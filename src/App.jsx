@@ -63,6 +63,25 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState(() => findProjectByHash(window.location.hash, portfolioData));
   const savedScrollYRef = useRef(0);
   const pendingRestoreRef = useRef(false);
+  const visitTrackedRef = useRef(false);
+
+  // Record a lightweight visit telemetry ping once per page load
+  useEffect(() => {
+    if (visitTrackedRef.current) return;
+    visitTrackedRef.current = true;
+    fetch(resolveApiUrl('/api/visit'), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        path: window.location.pathname || '/',
+        referrer: document.referrer || '',
+      }),
+      keepalive: true,
+    }).catch(() => {});
+  }, []);
 
   // Hydrate portfolio content, projects & gallery live from Laravel backend API
   useEffect(() => {

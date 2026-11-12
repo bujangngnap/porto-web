@@ -254,4 +254,34 @@ class PortfolioBackendTest extends TestCase
             ->assertSee('id="switcher"', false)
             ->assertSee('id="toggler"', false);
     }
+
+    public function test_visit_tracking_endpoint_records_views_and_renders_dashboard_chart(): void
+    {
+        $this->seed(PortfolioSeeder::class);
+
+        $this->postJson('/api/visit', ['path' => '/', 'referrer' => 'https://google.com/search?q=ashr'])
+            ->assertCreated()
+            ->assertJson(['ok' => true]);
+
+        $this->postJson('/api/visit', ['path' => '/', 'referrer' => ''])
+            ->assertCreated();
+
+        $this->assertDatabaseCount('site_visits', 2);
+        $this->assertDatabaseHas('site_visits', [
+            'path' => '/',
+            'referrer_host' => 'google.com',
+        ]);
+
+        $this->post('/admin/login', [
+            'email' => 'banggob09@gmail.com',
+            'password' => 'admin1234',
+        ])->assertRedirect('/admin');
+
+        $this->get('/admin')
+            ->assertOk()
+            ->assertSee('Grafik Pengunjung Website')
+            ->assertSee('id="ashr-traffic-svg"', false)
+            ->assertSee('data-traffic-range="7"', false)
+            ->assertSee('data-traffic-range="30"', false);
+    }
 }

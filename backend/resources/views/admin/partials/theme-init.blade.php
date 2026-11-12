@@ -376,6 +376,9 @@
     html[data-admin-theme="light"] .bg-white\/10 {
         background-color: rgba(15, 23, 42, 0.08);
     }
+    html[data-admin-theme="light"] .bg-white\/\[0\.07\] {
+        background-color: rgba(15, 23, 42, 0.1);
+    }
     html[data-admin-theme="light"] .bg-zinc-100 {
         background-color: #0f172a;
     }
