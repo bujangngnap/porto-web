@@ -68,7 +68,13 @@
                             <a href="{{ route('admin.projects.edit', $project) }}" class="px-3 py-1.5 rounded-lg text-[11px] font-semibold bg-zinc-100 hover:bg-white text-zinc-950">
                                 Edit
                             </a>
-                            <form method="POST" action="{{ route('admin.projects.destroy', $project) }}" onsubmit="return confirm('Hapus proyek {{ $project->title }}?')">
+                            <form
+                                method="POST"
+                                action="{{ route('admin.projects.destroy', $project) }}"
+                                data-confirm-title="Hapus Proyek?"
+                                data-confirm-message="Proyek ini akan dihapus permanen dari daftar portofolio dan database."
+                                data-confirm-item="{{ $project->title }}"
+                            >
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="px-3 py-1.5 rounded-lg text-[11px] font-medium text-rose-400 hover:bg-rose-500/10 border border-rose-500/25 cursor-pointer">

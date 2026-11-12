@@ -36,7 +36,13 @@
                         <a href="{{ route('admin.gallery.edit', $photo) }}" class="px-3 py-1.5 rounded-lg text-[11px] font-semibold bg-zinc-100 hover:bg-white text-zinc-950">
                             Edit
                         </a>
-                        <form method="POST" action="{{ route('admin.gallery.destroy', $photo) }}" onsubmit="return confirm('Hapus foto ini dari galeri?')">
+                        <form
+                            method="POST"
+                            action="{{ route('admin.gallery.destroy', $photo) }}"
+                            data-confirm-title="Hapus Foto Galeri?"
+                            data-confirm-message="Foto ini akan dihapus permanen dari bagian Spiral Photo Gallery."
+                            data-confirm-item="{{ $photo->title }}"
+                        >
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="px-3 py-1.5 rounded-lg text-[11px] font-medium text-rose-400 hover:bg-rose-500/10 border border-rose-500/25 cursor-pointer">

@@ -72,7 +72,13 @@
                         </button>
                     </form>
 
-                    <form method="POST" action="{{ route('admin.comments.destroy', $comment) }}" onsubmit="return confirm('Hapus komentar ini?')">
+                    <form
+                        method="POST"
+                        action="{{ route('admin.comments.destroy', $comment) }}"
+                        data-confirm-title="Hapus Komentar?"
+                        data-confirm-message="Komentar pengunjung ini akan dihapus permanen dari database."
+                        data-confirm-item="{{ $comment->name }} — {{ \Illuminate\Support\Str::limit($comment->message, 60) }}"
+                    >
                         @csrf
                         @method('DELETE')
                         <button

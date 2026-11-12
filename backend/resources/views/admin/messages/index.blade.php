@@ -68,7 +68,13 @@
                             </button>
                         </form>
 
-                        <form method="POST" action="{{ route('admin.messages.destroy', $msg) }}" onsubmit="return confirm('Hapus pesan ini permanen?')">
+                        <form
+                            method="POST"
+                            action="{{ route('admin.messages.destroy', $msg) }}"
+                            data-confirm-title="Hapus Pesan?"
+                            data-confirm-message="Pesan masuk ini akan dihapus permanen dan tidak bisa dikembalikan."
+                            data-confirm-item="{{ $msg->name }} ({{ $msg->email }})"
+                        >
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="px-3 py-1.5 rounded-xl text-xs font-medium text-rose-400 hover:bg-rose-500/10 border border-rose-500/25 cursor-pointer">

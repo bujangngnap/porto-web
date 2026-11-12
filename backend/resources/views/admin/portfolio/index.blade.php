@@ -249,7 +249,13 @@
 
                         <div class="flex items-center gap-2 flex-shrink-0">
                             <a href="{{ route('admin.portfolio.index', ['section' => 'education', 'edit_edu' => $edu->id]) }}" class="px-3 py-1.5 rounded-lg text-[11px] font-semibold bg-zinc-100 hover:bg-white text-zinc-950">Edit</a>
-                            <form method="POST" action="{{ route('admin.portfolio.education.destroy', $edu) }}" onsubmit="return confirm('Hapus riwayat pendidikan ini?')">
+                            <form
+                                method="POST"
+                                action="{{ route('admin.portfolio.education.destroy', $edu) }}"
+                                data-confirm-title="Hapus Riwayat Pendidikan?"
+                                data-confirm-message="Data pendidikan ini akan dihapus permanen dari portofolio."
+                                data-confirm-item="{{ $edu->school }} — {{ $edu->degree }}"
+                            >
                                 @csrf @method('DELETE')
                                 <button type="submit" class="px-3 py-1.5 rounded-lg text-[11px] font-medium text-rose-400 hover:bg-rose-500/10 border border-rose-500/25 cursor-pointer">Hapus</button>
                             </form>
@@ -360,7 +366,13 @@
 
                         <div class="flex items-center gap-2 flex-shrink-0">
                             <a href="{{ route('admin.portfolio.index', ['section' => 'experience', 'edit_exp' => $exp->id]) }}" class="px-3 py-1.5 rounded-lg text-[11px] font-semibold bg-zinc-100 hover:bg-white text-zinc-950">Edit</a>
-                            <form method="POST" action="{{ route('admin.portfolio.experience.destroy', $exp) }}" onsubmit="return confirm('Hapus pengalaman ini?')">
+                            <form
+                                method="POST"
+                                action="{{ route('admin.portfolio.experience.destroy', $exp) }}"
+                                data-confirm-title="Hapus Pengalaman?"
+                                data-confirm-message="Data pengalaman kerja ini akan dihapus permanen dari portofolio."
+                                data-confirm-item="{{ $exp->company }} — {{ $exp->role }}"
+                            >
                                 @csrf @method('DELETE')
                                 <button type="submit" class="px-3 py-1.5 rounded-lg text-[11px] font-medium text-rose-400 hover:bg-rose-500/10 border border-rose-500/25 cursor-pointer">Hapus</button>
                             </form>
@@ -442,7 +454,13 @@
 
                         <div class="flex items-center gap-2 flex-shrink-0">
                             <a href="{{ route('admin.portfolio.index', ['section' => 'social', 'edit_social' => $link->id]) }}" class="px-3 py-1.5 rounded-lg text-[11px] font-semibold bg-zinc-100 hover:bg-white text-zinc-950">Edit</a>
-                            <form method="POST" action="{{ route('admin.portfolio.social.destroy', $link) }}" onsubmit="return confirm('Hapus link medsos ini?')">
+                            <form
+                                method="POST"
+                                action="{{ route('admin.portfolio.social.destroy', $link) }}"
+                                data-confirm-title="Hapus Link Media Sosial?"
+                                data-confirm-message="Tautan media sosial ini akan dihapus dari kartu kontak portofolio."
+                                data-confirm-item="{{ $link->display_name }}"
+                            >
                                 @csrf @method('DELETE')
                                 <button type="submit" class="px-3 py-1.5 rounded-lg text-[11px] font-medium text-rose-400 hover:bg-rose-500/10 border border-rose-500/25 cursor-pointer">Hapus</button>
                             </form>

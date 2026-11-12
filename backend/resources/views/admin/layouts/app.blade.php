@@ -298,6 +298,55 @@
         </div>
     </div>
 
+    <!-- Custom Theme-Aware Delete Confirmation Modal -->
+    <div
+        id="ashr-confirm-modal"
+        class="fixed inset-0 z-[120] hidden items-center justify-center p-4 bg-black/65 backdrop-blur-sm opacity-0 transition-opacity duration-200"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="ashr-confirm-title"
+        aria-describedby="ashr-confirm-message"
+    >
+        <div
+            id="ashr-confirm-dialog"
+            class="w-full max-w-md bg-[#18181b] border border-white/10 rounded-3xl p-6 shadow-2xl space-y-5 transform scale-95 transition-transform duration-200"
+        >
+            <div class="flex items-start gap-3.5">
+                <div class="w-11 h-11 rounded-2xl bg-rose-500/15 border border-rose-500/25 text-rose-400 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 6h18"/><path stroke-linecap="round" stroke-linejoin="round" d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path stroke-linecap="round" stroke-linejoin="round" d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/>
+                    </svg>
+                </div>
+                <div class="min-w-0 flex-1 pt-0.5">
+                    <h3 id="ashr-confirm-title" class="font-display font-bold text-base text-zinc-100 leading-snug">Konfirmasi Hapus</h3>
+                    <p id="ashr-confirm-message" class="mt-1 text-xs text-zinc-400 leading-relaxed">Item yang dihapus tidak dapat dikembalikan.</p>
+                </div>
+            </div>
+
+            <div id="ashr-confirm-item-wrap" class="hidden px-3.5 py-2.5 rounded-xl bg-[#202025] border border-white/[0.07]">
+                <div id="ashr-confirm-item" class="text-xs font-semibold text-zinc-100 truncate"></div>
+            </div>
+
+            <div class="flex items-center justify-end gap-2.5 pt-1">
+                <button
+                    type="button"
+                    id="ashr-confirm-cancel"
+                    class="px-4 py-2.5 rounded-xl text-xs font-medium bg-[#202025] hover:bg-[#2a2a30] border border-white/[0.08] text-zinc-200 transition-colors cursor-pointer"
+                >
+                    Batal
+                </button>
+                <button
+                    type="button"
+                    id="ashr-confirm-submit"
+                    style="background-color: #e11d48; color: #ffffff;"
+                    class="px-4 py-2.5 rounded-xl text-xs font-semibold hover:opacity-90 shadow-sm transition-opacity cursor-pointer"
+                >
+                    Ya, Hapus
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         function toggleSidebar(show) {
             const sidebar = document.getElementById('sidebar');
@@ -310,6 +359,88 @@
                 backdrop.classList.add('hidden');
             }
         }
+
+        (function () {
+            const modal = document.getElementById('ashr-confirm-modal');
+            const dialog = document.getElementById('ashr-confirm-dialog');
+            const titleEl = document.getElementById('ashr-confirm-title');
+            const msgEl = document.getElementById('ashr-confirm-message');
+            const itemWrap = document.getElementById('ashr-confirm-item-wrap');
+            const itemEl = document.getElementById('ashr-confirm-item');
+            const cancelBtn = document.getElementById('ashr-confirm-cancel');
+            const submitBtn = document.getElementById('ashr-confirm-submit');
+            if (!modal || !dialog) return;
+
+            let pendingForm = null;
+            let lastFocus = null;
+
+            function closeConfirm() {
+                modal.classList.add('opacity-0');
+                dialog.classList.add('scale-95');
+                setTimeout(function () {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Ya, Hapus';
+                    pendingForm = null;
+                    if (lastFocus && typeof lastFocus.focus === 'function') {
+                        lastFocus.focus();
+                    }
+                    lastFocus = null;
+                }, 160);
+            }
+
+            function openConfirm(form) {
+                pendingForm = form;
+                lastFocus = document.activeElement;
+                titleEl.textContent = form.dataset.confirmTitle || 'Konfirmasi Hapus';
+                msgEl.textContent = form.dataset.confirmMessage || 'Item ini akan dihapus permanen.';
+                const itemText = (form.dataset.confirmItem || '').trim();
+                if (itemText) {
+                    itemEl.textContent = itemText;
+                    itemWrap.classList.remove('hidden');
+                } else {
+                    itemWrap.classList.add('hidden');
+                }
+                submitBtn.textContent = form.dataset.confirmOk || 'Ya, Hapus';
+                submitBtn.disabled = false;
+
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                requestAnimationFrame(function () {
+                    modal.classList.remove('opacity-0');
+                    dialog.classList.remove('scale-95');
+                    cancelBtn.focus();
+                });
+            }
+
+            document.addEventListener('submit', function (e) {
+                const form = e.target;
+                if (!form || !form.matches('form[data-confirm-message]')) return;
+                if (form.dataset.confirmed === 'true') return;
+                e.preventDefault();
+                openConfirm(form);
+            });
+
+            cancelBtn.addEventListener('click', closeConfirm);
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) closeConfirm();
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeConfirm();
+                }
+            });
+
+            submitBtn.addEventListener('click', function () {
+                if (!pendingForm) return;
+                const formToSubmit = pendingForm;
+                formToSubmit.dataset.confirmed = 'true';
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Menghapus...';
+                formToSubmit.submit();
+            });
+        })();
     </script>
 </body>
 </html>
