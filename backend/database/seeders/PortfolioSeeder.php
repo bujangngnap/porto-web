@@ -432,7 +432,7 @@ class PortfolioSeeder extends Seeder
             SocialLink::create([
                 'display_name' => 'Instagram',
                 'sub_text' => 'Karya Desain & Portofolio',
-                'url' => 'https://instagram.com',
+                'url' => 'https://www.instagram.com/tasr_png?obrf=MXUyZXIycnBrZjU5MA==',
                 'type' => 'instagram',
                 'sort_order' => 3,
             ]);

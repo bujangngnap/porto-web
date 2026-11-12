@@ -533,7 +533,7 @@ export const portfolioData = {
       name: "Instagram",
       displayName: "Instagram",
       subText: "Karya Desain & Portofolio",
-      url: "https://instagram.com",
+      url: "https://www.instagram.com/tasr_png?obrf=MXUyZXIycnBrZjU5MA==",
       color: "from-pink-500 via-purple-500 to-amber-500",
       type: "instagram"
     },
