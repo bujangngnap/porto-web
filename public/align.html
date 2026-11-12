@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { background: #030712; color: #fff; font-family: sans-serif; padding: 20px; display: flex; gap: 30px; }
+    .card { position: relative; width: 420px; height: 500px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.2); background: #0b1120; }
+    .bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .hero-layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center top; }
+    .controls { display: flex; flex-direction: column; gap: 12px; width: 340px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="/profile.png" class="bg-img" />
+    <img id="layer" src="/bp_mask2.png" class="hero-layer" />
+  </div>
+  <div class="controls">
+    <h3>Align Black Panther Mask</h3>
+    <select id="srcSelect" style="padding: 8px; background: #1e293b; color: white; border-radius: 6px;">
+      <option value="/bp_mask2.png">bp_mask2.png (Airsoft/Movie Cosplay Mask)</option>
+      <option value="/bp_mask3.png">bp_mask3.png (Vibranium Legends Mask)</option>
+      <option value="/bp_mask1.png">bp_mask1.png (Adult Movie Mask)</option>
+      <option value="/bp2.png">bp2.png (Graphic Helmet)</option>
+    </select>
+    <label>Scale: <span id="scaleVal">0.45</span></label>
+    <input type="range" id="scale" min="0.2" max="1.5" step="0.01" value="0.45" />
+    <label>Translate Y (%): <span id="tyVal">-20</span></label>
+    <input type="range" id="ty" min="-50" max="50" step="0.5" value="-20" />
+    <label>Translate X (%): <span id="txVal">0</span></label>
+    <input type="range" id="tx" min="-30" max="30" step="0.5" value="0" />
+    <label>Opacity: <span id="opVal">0.85</span></label>
+    <input type="range" id="op" min="0" max="1" step="0.05" value="0.85" />
+    <div id="res" style="background:#1e293b;padding:12px;border-radius:8px;font-family:monospace;font-size:12px;"></div>
+  </div>
+  <script>
+    const layer = document.getElementById('layer');
+    const srcSelect = document.getElementById('srcSelect');
+    const scale = document.getElementById('scale');
+    const ty = document.getElementById('ty');
+    const tx = document.getElementById('tx');
+    const op = document.getElementById('op');
+    const res = document.getElementById('res');
+    srcSelect.onchange = () => { layer.src = srcSelect.value; update(); };
+    function update() {
+      document.getElementById('scaleVal').textContent = scale.value;
+      document.getElementById('tyVal').textContent = ty.value;
+      document.getElementById('txVal').textContent = tx.value;
+      document.getElementById('opVal').textContent = op.value;
+      layer.style.opacity = op.value;
+      layer.style.transform = `translate(${tx.value}%, ${ty.value}%) scale(${scale.value})`;
+      res.textContent = `transform: "translate(${tx.value}%, ${ty.value}%) scale(${scale.value})"`;
+    }
+    scale.oninput = ty.oninput = tx.oninput = op.oninput = update;
+    update();
+  </script>
+</body>
+</html>
