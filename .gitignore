@@ -28,3 +28,5 @@ wt_full.txt
 *.sln
 *.sw?
 .originkit/
+
+.vercel

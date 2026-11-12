@@ -64,10 +64,6 @@
             <div class="space-y-1">
                 <div class="flex items-center gap-2.5">
                     <h2 class="font-display font-bold text-sm sm:text-base text-zinc-100">Grafik Pengunjung Website</h2>
-                    <span class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-semibold rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/20">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                        Realtime
-                    </span>
                 </div>
                 <p class="text-xs text-zinc-500">Jumlah tampilan halaman dan pengunjung unik harian (WIB).</p>
             </div>
