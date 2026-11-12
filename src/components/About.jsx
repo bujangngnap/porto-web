@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FileText, GraduationCap, Briefcase, Award, Code2, Sparkles, FolderGit2, CheckCircle2 } from 'lucide-react';
+import { Mail, GraduationCap, Briefcase, Award, Code2, Sparkles, FolderGit2, CheckCircle2 } from 'lucide-react';
 import SpotlightCard from './SpotlightCard';
 import GlassFolder from './GlassFolder';
 
@@ -168,7 +168,7 @@ export default function About({
 
         {/* 🌟 Desktop Layout (lg and up): 3-Column Symmetrical Panoramic with Photo at True Center */}
         <div className="hidden lg:grid grid-cols-[1.25fr_1.25fr_1.1fr] gap-6 xl:gap-8 items-center mb-24">
-          {/* Left Column: Greeting, Name (2 clean bold lines), and View CV button */}
+          {/* Left Column: Greeting, Name (2 clean bold lines), and Contact Me button */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -193,17 +193,12 @@ export default function About({
 
             <div className="mt-8">
               <a
-                href={personal.resumeUrl && personal.resumeUrl !== '#' ? personal.resumeUrl : "#"}
-                target={personal.resumeUrl && personal.resumeUrl !== '#' ? "_blank" : undefined}
-                rel="noopener noreferrer"
+                href="#Contact"
+                className="inline-flex px-6 py-3 rounded-xl font-semibold bg-[#2c67ed] hover:bg-[#1d4ed8] transition-[transform,background-color] duration-200 hover:scale-[1.03] items-center gap-2 text-white whitespace-nowrap cursor-pointer shadow-[0_8px_20px_rgba(44,103,237,0.35)]"
+                style={{ fontFamily: 'var(--font-display)' }}
               >
-                <button
-                  className="px-6 py-3 rounded-xl font-semibold bg-[#2c67ed] hover:bg-[#1d4ed8] transition-[transform,background-color] duration-200 hover:scale-[1.03] flex items-center gap-2 text-white whitespace-nowrap cursor-pointer shadow-[0_8px_20px_rgba(44,103,237,0.35)]"
-                  style={{ fontFamily: 'var(--font-display)' }}
-                >
-                  <FileText className="w-4 h-4" />
-                  <span>View CV</span>
-                </button>
+                <Mail className="w-4 h-4" />
+                <span>Contact Me</span>
               </a>
             </div>
           </motion.div>
@@ -292,13 +287,11 @@ export default function About({
             {/* Stacked Full-Width Buttons */}
             <div className="flex flex-col gap-3.5 w-full">
               <a
-                href={personal.resumeUrl && personal.resumeUrl !== '#' ? personal.resumeUrl : "#"}
-                target={personal.resumeUrl && personal.resumeUrl !== '#' ? "_blank" : undefined}
-                rel="noopener noreferrer"
+                href="#Contact"
                 className="w-full flex items-center justify-center gap-2.5 py-4 px-6 rounded-2xl font-bold bg-[#2c67ed] hover:bg-[#1d4ed8] text-white shadow-[0_8px_20px_rgba(44,103,237,0.35)] active:scale-[0.98] transition-all text-sm"
               >
-                <FileText className="w-4 h-4" />
-                <span>View CV</span>
+                <Mail className="w-4 h-4" />
+                <span>Contact Me</span>
               </a>
 
               <a
