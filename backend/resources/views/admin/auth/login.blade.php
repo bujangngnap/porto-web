@@ -96,7 +96,7 @@
                     required
                     autofocus
                     value="{{ old('email') }}"
-                    placeholder="banggob09@gmail.com"
+                    placeholder="example@gmail.com"
                     class="w-full px-4 py-3 rounded-xl bg-[#202025] border border-white/[0.08] text-zinc-100 placeholder:text-zinc-500 focus:border-zinc-400 focus:bg-[#24242a] focus:outline-none text-sm transition-colors"
                 >
             </div>
