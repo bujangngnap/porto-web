@@ -438,10 +438,10 @@ class PortfolioSeeder extends Seeder
             ]);
 
             SocialLink::create([
-                'display_name' => 'TikTok',
+                'display_name' => 'YouTube',
                 'sub_text' => 'Konten Tech & Kreatif',
-                'url' => 'https://tiktok.com',
-                'type' => 'tiktok',
+                'url' => 'https://youtube.com/@hambamu24434?si=bdQtOHHvbrrYPWVA',
+                'type' => 'youtube',
                 'sort_order' => 4,
             ]);
         }

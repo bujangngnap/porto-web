@@ -538,12 +538,12 @@ export const portfolioData = {
       type: "instagram"
     },
     {
-      name: "TikTok",
-      displayName: "TikTok",
+      name: "YouTube",
+      displayName: "YouTube",
       subText: "Konten Tech & Kreatif",
-      url: "https://tiktok.com",
-      color: "from-slate-900 via-black to-zinc-900",
-      type: "tiktok"
+      url: "https://youtube.com/@hambamu24434?si=bdQtOHHvbrrYPWVA",
+      color: "from-red-600 to-rose-600",
+      type: "youtube"
     }
   ]
 };

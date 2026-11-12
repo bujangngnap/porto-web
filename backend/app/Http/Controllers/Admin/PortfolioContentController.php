@@ -303,7 +303,7 @@ class PortfolioContentController extends Controller
             'display_name' => ['required', 'string', 'max:100'],
             'sub_text' => ['nullable', 'string', 'max:150'],
             'url' => ['required', 'url', 'max:500'],
-            'type' => ['required', Rule::in(['github', 'linkedin', 'instagram', 'tiktok'])],
+            'type' => ['required', Rule::in(['github', 'linkedin', 'instagram', 'youtube', 'tiktok'])],
             'sort_order' => ['nullable', 'integer', 'min:0', 'max:999'],
         ]);
 

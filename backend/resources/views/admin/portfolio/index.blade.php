@@ -390,7 +390,7 @@
                     <div>
                         <label class="block text-xs font-semibold text-zinc-300 mb-1">Platform</label>
                         <select name="type" class="{{ $compactInputClass }}">
-                            @foreach (['github' => 'GitHub', 'linkedin' => 'LinkedIn', 'instagram' => 'Instagram', 'tiktok' => 'TikTok'] as $val => $label)
+                            @foreach (['github' => 'GitHub', 'linkedin' => 'LinkedIn', 'instagram' => 'Instagram', 'youtube' => 'YouTube', 'tiktok' => 'TikTok'] as $val => $label)
                                 <option value="{{ $val }}" @selected(old('type', $editingSocial?->type) === $val)>{{ $label }}</option>
                             @endforeach
                         </select>
