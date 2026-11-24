@@ -26,10 +26,13 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('admin.*', function ($view): void {
             $unreadCount = 0;
+            $unreadNotifications = collect();
             if (Schema::hasTable('contact_messages')) {
                 $unreadCount = ContactMessage::unread()->count();
+                $unreadNotifications = ContactMessage::unread()->latest('id')->limit(5)->get();
             }
             $view->with('unreadMessagesCount', $unreadCount);
+            $view->with('unreadNotifications', $unreadNotifications);
         });
     }
 }

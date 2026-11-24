@@ -1,3 +1,6 @@
+@php
+    $gdSwitcherGroup = 'ashr_admin_theme_' . uniqid();
+@endphp
 <fieldset
     class="switcher"
     data-ashr-theme-switcher
@@ -11,7 +14,7 @@
         <input
             class="switcher__input"
             type="radio"
-            name="ashr_admin_theme"
+            name="{{ $gdSwitcherGroup }}"
             value="light"
             c-option="1"
             aria-label="Light mode"
@@ -39,7 +42,7 @@
         <input
             class="switcher__input"
             type="radio"
-            name="ashr_admin_theme"
+            name="{{ $gdSwitcherGroup }}"
             value="dark"
             c-option="2"
             aria-label="Dark mode"
@@ -62,7 +65,7 @@
         <input
             class="switcher__input"
             type="radio"
-            name="ashr_admin_theme"
+            name="{{ $gdSwitcherGroup }}"
             value="dim"
             c-option="3"
             aria-label="Dim mode"
