@@ -25,15 +25,6 @@
     @include('admin.partials.theme-init')
 </head>
 <body class="gd-app font-sans antialiased">
-    <!-- Spatial Background Photo Layer -->
-    <img
-        class="gd-background"
-        src="{{ asset('images/studio-bg.jpg') }}"
-        alt=""
-        aria-hidden="true"
-        fetchpriority="high"
-    >
-
     <!-- Liquid Glass Admin Opening Overlay -->
     <div
         id="admin-opening-overlay"

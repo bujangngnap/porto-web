@@ -45,10 +45,10 @@
         --gd-graph-ink: #e7d9cd;
         --gd-focus: #f9bf9b;
         --gd-dark-shadow: 10 4 3;
-        --gd-backdrop-bg: #40322b;
-        --gd-bg-filter: sepia(.15) saturate(.75) brightness(.61);
-        --gd-overlay-grad: linear-gradient(116deg, rgb(42 26 20 / 48%), transparent 45%, rgb(138 82 51 / 22%) 78%, transparent 100%),
-            linear-gradient(0deg, rgb(28 17 13 / 44%), transparent 60%);
+        --gd-backdrop-bg: #171210;
+        --gd-overlay-grad:
+            radial-gradient(ellipse 75% 55% at 15% 10%, rgb(156 96 62 / 16%), transparent 60%),
+            radial-gradient(ellipse 60% 50% at 88% 85%, rgb(30 116 97 / 13%), transparent 58%);
 
         /* Liquid Glass Switcher Tokens */
         --c-glass: #d6c5b8;
@@ -90,10 +90,10 @@
         --gd-graph-ink: #40332d;
         --gd-focus: #194b48;
         --gd-dark-shadow: 35 21 14;
-        --gd-backdrop-bg: #ab8e76;
-        --gd-bg-filter: sepia(.22) saturate(.78) brightness(.86);
-        --gd-overlay-grad: linear-gradient(116deg, rgb(73 48 37 / 35%), transparent 43%, rgb(162 101 63 / 24%) 76%, transparent 100%),
-            linear-gradient(0deg, rgb(53 33 25 / 34%), transparent 58%);
+        --gd-backdrop-bg: #e4d5c6;
+        --gd-overlay-grad:
+            radial-gradient(ellipse 75% 55% at 18% 12%, rgb(255 249 242 / 58%), transparent 60%),
+            radial-gradient(ellipse 65% 55% at 86% 86%, rgb(164 114 82 / 14%), transparent 60%);
 
         --c-glass: #d7c0ab;
         --c-light: #fffdf6;
@@ -134,10 +134,10 @@
         --gd-graph-ink: #cbd5e1;
         --gd-focus: #7dd3fc;
         --gd-dark-shadow: 2 6 16;
-        --gd-backdrop-bg: #16212e;
-        --gd-bg-filter: saturate(.55) hue-rotate(175deg) brightness(.48);
-        --gd-overlay-grad: linear-gradient(116deg, rgb(12 22 38 / 55%), transparent 46%, rgb(38 74 114 / 24%) 78%, transparent 100%),
-            linear-gradient(0deg, rgb(10 18 30 / 50%), transparent 58%);
+        --gd-backdrop-bg: #0f1722;
+        --gd-overlay-grad:
+            radial-gradient(ellipse 75% 55% at 16% 10%, rgb(56 108 168 / 18%), transparent 60%),
+            radial-gradient(ellipse 60% 50% at 86% 88%, rgb(20 118 110 / 12%), transparent 58%);
 
         --c-glass: #94a3b8;
         --c-light: #e2e8f0;
@@ -156,8 +156,7 @@
     html.ashr-theme-transitions .gd-stage,
     html.ashr-theme-transitions .gd-panel,
     html.ashr-theme-transitions .gd-metric,
-    html.ashr-theme-transitions .gd-summary,
-    html.ashr-theme-transitions .gd-background {
+    html.ashr-theme-transitions .gd-summary {
         transition: background-color 220ms ease, border-color 220ms ease, color 220ms ease, filter 280ms ease, box-shadow 220ms ease;
     }
 
@@ -174,25 +173,14 @@
         font-variant-numeric: tabular-nums;
     }
 
-    .gd-background,
     .gd-app::before {
+        content: "";
         position: fixed;
         inset: 0;
+        z-index: -1;
         inline-size: 100%;
         block-size: 100%;
         pointer-events: none;
-    }
-
-    .gd-background {
-        z-index: -2;
-        object-fit: cover;
-        object-position: center 60%;
-        filter: var(--gd-bg-filter);
-    }
-
-    .gd-app::before {
-        content: "";
-        z-index: -1;
         background: var(--gd-overlay-grad);
     }
 

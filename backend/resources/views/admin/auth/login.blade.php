@@ -33,14 +33,6 @@
     </style>
 </head>
 <body class="gd-app min-h-screen flex items-center justify-center p-4 font-sans antialiased">
-    <img
-        class="gd-background"
-        src="{{ asset('images/studio-bg.jpg') }}"
-        alt=""
-        aria-hidden="true"
-        fetchpriority="high"
-    >
-
     <div class="fixed top-4 right-4 z-30">
         @include('admin.partials.theme-switcher')
     </div>
