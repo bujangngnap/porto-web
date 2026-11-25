@@ -517,7 +517,12 @@ export default function Contact({ personal, socialLinks, hideBackground = false 
                 )}
               </div>
 
-              <div className="space-y-3 max-h-64 overflow-y-auto pr-1">
+              <div
+                data-lenis-prevent
+                data-lenis-prevent-wheel
+                data-lenis-prevent-touch
+                className="comments-scroll space-y-3 max-h-80 overflow-y-auto overscroll-contain pr-2"
+              >
                 {comments.length === 0 ? (
                   <div className="p-4 rounded-2xl bg-[#f8f9fb] border border-dashed border-zinc-200 text-center text-xs text-zinc-500">
                     {commentsLoading

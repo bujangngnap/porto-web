@@ -52,6 +52,27 @@ body {
   background: #334155;
 }
 
+/* Light-card comments scrollbar & touch pan */
+.comments-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.55) transparent;
+  touch-action: pan-y;
+}
+.comments-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.comments-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.comments-scroll::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.55);
+  border-radius: 9999px;
+  border: none;
+}
+.comments-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.78);
+}
+
 /* Glassmorphism & Liquid Glass */
 .glass-panel {
   background: rgba(15, 23, 42, 0.7);

@@ -21,7 +21,7 @@ export default function CertificateModal({ certificate, onClose }) {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      <div data-lenis-prevent className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto overscroll-contain">
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
